@@ -76,7 +76,10 @@
   // A nickname-looking string: one word, no digits-with-units, short.
   const looksLikeName = (s) => !/\s/.test(s) && s.length <= 12 && !/\d/.test(s);
 
-  function translate(raw, keepParticles = false) {
+  const GENERIC = window.MSX_GENERIC || new Set();
+  // forMT: preparing a sentence for the backup translator. Only game terms are swapped in;
+  // everyday words stay Korean so the translator reads them in context.
+  function translate(raw, keepParticles = false, forMT = false) {
     const lead = raw.match(/^\s*/)[0];
     const trail = raw.match(/\s*$/)[0];
     const t = raw.trim();
@@ -90,13 +93,13 @@
     const masks = [];
     let s = t.replace(/@(\S+)/g, (m) => { masks.push(m); return "\u0000" + (masks.length - 1) + "\u0000"; });
 
-    s = convertBigNumbers(s);
+    if (!forMT) s = convertBigNumbers(s);
     for (const [re, fn] of PATTERNS) s = s.replace(re, fn);
-    if (subRe) s = s.replace(subRe, (_, k, p) => G[k] + (keepParticles && p ? p : ""));
+    if (subRe) s = s.replace(subRe, (m, k, p) => (forMT && GENERIC.has(k)) ? m : G[k] + (keepParticles && p ? p : ""));
 
     s = s.replace(/\u0000(\d+)\u0000/g, (_, i) => masks[+i]);
     // Second look-up: some sentences only match once their game terms are in English.
-    if (Object.prototype.hasOwnProperty.call(G, s)) s = G[s];
+    if (!forMT && Object.prototype.hasOwnProperty.call(G, s)) s = G[s];
     s = localize(s).replace(/ {2,}/g, " ").replace(/\( /g, "(");
     return s === t ? null : lead + s + trail;
   }
@@ -199,7 +202,7 @@
     if (out !== v) { written.set(node, out); node.nodeValue = out; }
     if (needsMachine(out)) {
       const before = out;
-      const mtInput = (translate(v, true) ?? v).trim();
+      const mtInput = (translate(v, true, true) ?? v).trim();
       machine(mtInput).then((en) => {
         if (node.nodeValue !== before || !en) return;
         const final = before.replace(before.trim(), localize(en));

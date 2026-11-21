@@ -703,6 +703,12 @@ Object.assign(window.MSX_GLOSSARY, {
 // because the extension also looks up the result a second time.
 Object.assign(window.MSX_GLOSSARY, {
   "악마": "Demon",
+  "강화단계": "Stars",
+  "기댓값": "Expected",
+  "노작개수": "Clean items needed",
+  "100억당 뎀%": "Dmg% per 10B meso",
+  "100억당 최종뎀": "FD per 10B meso",
+  "뎀%": "Dmg%",
   "사냥컷": "Hunting Cutoff",
   "파운틴": "Fountain",
   "새벽": "Dawn",
@@ -779,6 +785,13 @@ Object.assign(window.MSX_GLOSSARY, {
   "심연의 서큘레이터는 다시 굴릴 수치가 있는 옵션이 하나도 없으면 쓸 수 없습니다": "The Abyssal Circulator can't be used when no option has values left to reroll",
   "Soul Potential 추가 전 Item 장착 불가능합니다. 새로 생성해주세요\nInventory 위의 「Soul 이전 Equipment 복구」 버튼으로 한 번에 고칠 수 있습니다.": "Items from before Soul Potential was added can't be equipped. Please create them again.\nYou can fix them all at once with the 「Restore pre-Soul Equipment」 button above the Inventory."
 });
+
+// Everyday words that are fine as button labels but should NOT be swapped into a sentence
+// before it goes to the backup translator (e.g. 확인 = "OK" on a button, but "check" in a sentence).
+window.MSX_GENERIC = new Set(["확인","저장","적용","검색","취소","닫기","설정","생성","유지","측정","기준","현재","해당",
+  "등록","이름","클릭","문의","효율","반영","아이템","증가","감소","미만","이상","이하","착용","보유","달성","페이지",
+  "가격","비용","항목","시간","기본","연습","맵","실시간","컨텐츠","갱신","업데이트","공지","순위","이벤트","결과",
+  "불러오기","초기화","액션","감정","움직임","나중에","새로고침","다음 구간","이전 구간","시도","목표","확률","도전"]);
 
 // ---- Server-specific names ----
 // After translating, English text is adjusted for the server chosen in the popup.

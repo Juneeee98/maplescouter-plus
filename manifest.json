@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MapleScouter Plus",
-  "version": "1.7.2",
+  "version": "1.8.0",
   "description": "Better MapleScouter: proper MapleSEA/GMS English, English search in dropdowns, and no ads.",
   "permissions": [
     "storage",
