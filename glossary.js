@@ -703,6 +703,10 @@ Object.assign(window.MSX_GLOSSARY, {
 // because the extension also looks up the result a second time.
 Object.assign(window.MSX_GLOSSARY, {
   "악마": "Demon",
+  "조각값": "Fragment price",
+  "조각": "Fragments",
+  "에르다": "Erda",
+  "레벨까지": "Lv target",
   "소비아이템": "Consumables",
   "소비아이템 경험치": "Consumable EXP",
   "잠수맵": "AFK Map",
@@ -781,7 +785,8 @@ window.MSX_REGIONS = {
     [/\bSashimi\b/g, "times"],
     [/\bbasic probability\b/gi, "Base rate"],
     [/\bThe rest of the expectations?\b/gi, "Expected tries left"],
-    [/\btarget stage\b/gi, "Target"]
+    [/\btarget stage\b/gi, "Target"],
+    [/^Piece$/, "Fragments"]                         // 조각 (Sol Erda Fragments) on the HEXA page
   ],
   gms: [],
   msea: [
