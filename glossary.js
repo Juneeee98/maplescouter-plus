@@ -703,6 +703,12 @@ Object.assign(window.MSX_GLOSSARY, {
 // because the extension also looks up the result a second time.
 Object.assign(window.MSX_GLOSSARY, {
   "악마": "Demon",
+  "사냥컷": "Hunting Cutoff",
+  "파운틴": "Fountain",
+  "새벽": "Dawn",
+  "황혼": "Twilight",
+  "킬": "kill",
+  "계산기": "Calculator",
   "조각값": "Fragment price",
   "조각": "Fragments",
   "에르다": "Erda",
