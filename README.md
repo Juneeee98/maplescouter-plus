@@ -1,0 +1,2 @@
+# maplescouter-plus
+Better MapleScouter
