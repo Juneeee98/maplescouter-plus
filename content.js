@@ -58,7 +58,10 @@
     [/(\d+)\s*시간\s*전/g, (_, n) => n + " hours ago"],
     [/(\d+)\s*분\s*전/g, (_, n) => n + " min ago"],
     [/(\d+)\s*초(?![가-힣])/g, (_, n) => n + "s"],
+    [/(\d+)\s*회씩/g, (_, n) => n + " times each"],
     [/(\d+)\s*회(?![가-힣])/g, (_, n) => n + " times"],
+    [/(\d+)\s*분(?![가-힣])/g, (_, n) => n + " min"],
+    [/([\d.]+)\s*배(?![가-힣])/g, (_, n) => "×" + n],
     [/(\d+)\s*개(?![가-힣])/g, (_, n) => n],
     [/방금\s*전/g, () => "just now"],
     [/(\d+)\s*셋(?![\uac00-\ud7a3])/g, (_, n) => n + "-set"],
@@ -90,6 +93,8 @@
     if (subRe) s = s.replace(subRe, (_, k, p) => G[k] + (keepParticles && p ? p : ""));
 
     s = s.replace(/\u0000(\d+)\u0000/g, (_, i) => masks[+i]);
+    // Second look-up: some sentences only match once their game terms are in English.
+    if (Object.prototype.hasOwnProperty.call(G, s)) s = G[s];
     s = localize(s).replace(/ {2,}/g, " ").replace(/\( /g, "(");
     return s === t ? null : lead + s + trail;
   }
