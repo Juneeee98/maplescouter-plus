@@ -8,7 +8,8 @@
   let RULES = [];
   let EN_RE = null;
   function setRegion(r) {
-    RULES = (window.MSX_REGIONS || {})[r] || [];
+    const R = window.MSX_REGIONS || {};
+    RULES = [...(R.common || []), ...(R[r] || [])];
     EN_RE = RULES.length ? new RegExp(RULES.map(([re]) => re.source).join("|")) : null;
   }
   const localize = (s) => { for (const [re, to] of RULES) s = s.replace(re, to); return s; };
@@ -61,6 +62,8 @@
     [/(\d+)\s*개(?![가-힣])/g, (_, n) => n],
     [/방금\s*전/g, () => "just now"],
     [/(\d+)\s*셋(?![\uac00-\ud7a3])/g, (_, n) => n + "-set"],
+    [/(\d+)\s*단계까지/g, (_, n) => "Up to Stage " + n],
+    [/(\d+)\s*단계(?![\uac00-\ud7a3])/g, (_, n) => "Stage " + n],
     [/영환불\s*([\d,.]+)\s*개급/g, (_, n) => "~" + n + " Eternal Rebirth Flames"],
     [/(\d+)\s*줄(?![\uac00-\ud7a3])/g, (_, n) => " " + n + "-line"],
   ];
@@ -239,7 +242,16 @@
     if (!scheduled) { scheduled = true; requestAnimationFrame(flush); }
   }
 
+  // English is longer than Korean: let table headers wrap instead of overlapping.
+  function addLayoutFixes() {
+    const st = document.createElement("style");
+    st.id = "msx-layout";
+    st.textContent = "th{white-space:normal!important;overflow-wrap:break-word;line-height:1.25}";
+    (document.head || document.documentElement).appendChild(st);
+  }
+
   function start() {
+    addLayoutFixes();
     walk(document.body);
     fixTitle();
     new MutationObserver((muts) => {

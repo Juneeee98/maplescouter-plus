@@ -683,11 +683,34 @@ Object.assign(window.MSX_GLOSSARY, {
   "도핑": "buffs"
 });
 
+// ---- Soul Amplification simulator & similar tables ----
+Object.assign(window.MSX_GLOSSARY, {
+  "소울웨폰": "Soul Weapon",
+  "회": " times",
+  "기대값": "Expected",
+  "천장": "Pity",
+  "최대(천장)": "Max (pity)",
+  "단계까지": " Stage goal",
+  "시도": "Tries",
+  "목표": "Target",
+  "확률": "Chance",
+  "도전": "Tried",
+  "단계": "Stage"
+});
+
 // ---- Server-specific names ----
 // After translating, English text is adjusted for the server chosen in the popup.
 // This also fixes GMS-style English the site already shows (e.g. "Legion Total").
 window.MSX_GLOSSARY["흉성"] = "Radiant Malefic Star";
 window.MSX_REGIONS = {
+  // Fixes to the site's own English, applied for every server.
+  common: [
+    [/(\d)\s*Sashimi\b/g, "$1 times"],          // 회 (times) mistranslated as raw fish
+    [/\bSashimi\b/g, "times"],
+    [/\bbasic probability\b/gi, "Base rate"],
+    [/\bThe rest of the expectations?\b/gi, "Expected tries left"],
+    [/\btarget stage\b/gi, "Target"]
+  ],
   gms: [],
   msea: [
     [/\bLegion\b/g, "Union"],
