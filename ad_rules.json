@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "requestDomains": [
+        "vntsm.com",
+        "vntsm.io",
+        "venatusmedia.com",
+        "doubleclick.net",
+        "googlesyndication.com",
+        "googletagservices.com",
+        "adtrafficquality.google",
+        "fundingchoicesmessages.google.com",
+        "3lift.com",
+        "360yield.com",
+        "ccgateway.net",
+        "affec.tv",
+        "bids.ws",
+        "gumgum.com",
+        "intentiq.com",
+        "ad-delivery.net",
+        "rapidedge.io",
+        "rubiconproject.com",
+        "cpx.to",
+        "hyth.io",
+        "clean.gg",
+        "criteo.com",
+        "id5-sync.com",
+        "adsrvr.org",
+        "amazon-adsystem.com",
+        "pubmatic.com",
+        "adnxs.com",
+        "openx.net",
+        "casalemedia.com",
+        "sharethrough.com",
+        "smartadserver.com",
+        "teads.tv",
+        "yieldmo.com",
+        "media.net",
+        "sonobi.com",
+        "indexww.com",
+        "33across.com"
+      ],
+      "initiatorDomains": [
+        "maplescouter.com"
+      ],
+      "resourceTypes": [
+        "script",
+        "sub_frame",
+        "xmlhttprequest",
+        "image",
+        "media",
+        "ping",
+        "other",
+        "stylesheet",
+        "websocket"
+      ]
+    }
+  }
+]

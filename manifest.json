@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "MapleScouter Plus",
+  "version": "1.5.0",
+  "description": "Better MapleScouter: proper MapleSEA/GMS English, English search in dropdowns, and no ads.",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://maplescouter.com/*",
+        "https://*.maplescouter.com/*"
+      ],
+      "js": [
+        "adblock.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://maplescouter.com/*",
+        "https://*.maplescouter.com/*"
+      ],
+      "js": [
+        "glossary.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "MapleScouter Plus",
+    "default_popup": "popup.html"
+  },
+  "host_permissions": [
+    "https://maplescouter.com/*",
+    "https://*.maplescouter.com/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ads",
+        "enabled": true,
+        "path": "ad_rules.json"
+      }
+    ]
+  }
+}
