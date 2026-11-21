@@ -703,6 +703,11 @@ Object.assign(window.MSX_GLOSSARY, {
 // because the extension also looks up the result a second time.
 Object.assign(window.MSX_GLOSSARY, {
   "악마": "Demon",
+  "잠재비용": "Potential cost",
+  "입력": "Input",
+  "해제": "Remove",
+  "에디비용": "Bonus Potential cost",
+  "공마": "ATT/MATT",
   "강화단계": "Stars",
   "기댓값": "Expected",
   "노작개수": "Clean items needed",
@@ -805,7 +810,32 @@ window.MSX_REGIONS = {
     [/\bbasic probability\b/gi, "Base rate"],
     [/\bThe rest of the expectations?\b/gi, "Expected tries left"],
     [/\btarget stage\b/gi, "Target"],
-    [/^Piece$/, "Fragments"]                         // 조각 (Sol Erda Fragments) on the HEXA page
+    [/^Piece$/, "Fragments"],                        // 조각 (Sol Erda Fragments) on the HEXA page
+    // 공마 (ATT/MATT) mistranslated by the site as "ball / air + horse"
+    [/\bBall Mapper\b/g, "ATT/MATT"],
+    [/\b(?:Gong ?Horse|Air Horse|Gongma|Gong-ma)\b/gi, "ATT%"],
+    [/\bGong\b/g, "ATT"],
+    [/\bATT% \(%\)/g, "ATT%"],
+    // Cube calculator labels, shortened to fit their boxes
+    [/^Target Potential Basis$/, "Target basis"],
+    [/^Boss DMG\s*40% ↔ ATT%$/, "Boss 40% ↔ ATT%"],
+    [/^The number of lines allowed$/, "Lines allowed"],
+    [/^Boss DMG tolerable lines$/, "Boss lines OK"],
+    [/^IED can be tolerated$/, "IED lines OK"],
+    [/^IED\s*40% ↔ ATT%$/, "IED 40% ↔ ATT%"],
+    [/^Target Add\. Potential\(%\)$/, "Target Bonus Pot %"],
+    [/^Boss DMG\s*12 ↔ ATT%$/, "Boss 12% ↔ ATT%"],
+    [/^IED\s*5\s*=\s*ATT%$/, "IED 5% = ATT%"],
+    [/^Optional efficiency$/, "Option efficiency"],
+    // Hunting pages
+    [/\bYoungme\b/g, "Echo of Hero"],              // 영메 = 영웅의 메아리
+    [/\bOra Weapon\b/g, "Aura Weapon"],
+    [/\bThe number of fish\/H\b/gi, "Mobs/h"],     // 마리 (counter for mobs) read as "fish"
+    [/\bAwesome Mobzen\b/gi, "Mobs per spawn"],
+    [/^stat window work mob damage$/i, "Normal mob DMG (stat window)"],
+    // Long optimizer labels
+    [/^Withheld Hyperstat Points$/, "Unused Hyper Stat pts"],
+    [/^Renown Application Status$/, "Renown applied"]
   ],
   gms: [],
   msea: [

@@ -60,6 +60,7 @@
     [/(\d+)\s*초(?![가-힣])/g, (_, n) => n + "s"],
     [/([\d.]+(?:\s*~\s*[\d.]+)?)\s*킬(?![가-힣])/g, (_, n) => n + (n.trim() === "1" ? " kill" : " kills")],
     [/(\d+)\s*레벨까지/g, (_, n) => "up to Lv. " + n],
+    [/(\d+)\s*렙(?![가-힣])/g, (_, n) => "Lv." + n],
     [/(\d+)\s*회씩/g, (_, n) => n + " times each"],
     [/(\d+)\s*회(?![가-힣])/g, (_, n) => n + " times"],
     [/(\d+)\s*분(?![가-힣])/g, (_, n) => n + " min"],
@@ -260,8 +261,18 @@
     (document.head || document.documentElement).appendChild(st);
   }
 
+  // Text cut off with "…": show the full text when you hover over it.
+  function addOverflowTooltips() {
+    document.addEventListener("mouseover", (e) => {
+      const el = e.target;
+      if (!(el instanceof HTMLElement) || el.children.length || el.title) return;
+      if (el.scrollWidth > el.clientWidth + 1 && el.textContent.trim()) el.title = el.textContent.trim();
+    }, true);
+  }
+
   function start() {
     addLayoutFixes();
+    addOverflowTooltips();
     walk(document.body);
     fixTitle();
     new MutationObserver((muts) => {
