@@ -702,7 +702,12 @@ Object.assign(window.MSX_GLOSSARY, {
 // Some keys are written the way they look after partial translation (e.g. "My Equipment 또는 ..."),
 // because the extension also looks up the result a second time.
 Object.assign(window.MSX_GLOSSARY, {
-  "악마": "Demon",
+  // null = never translate (player names that are also normal words)
+  "악마": null,
+  "강환불": "Powerful Rebirth Flame",
+  "영환불": "Eternal Rebirth Flame",
+  "심환불": "Abyssal Rebirth Flame",
+  "개": "pcs",
   "잠재비용": "Potential cost",
   "입력": "Input",
   "해제": "Remove",
@@ -835,7 +840,10 @@ window.MSX_REGIONS = {
     [/^stat window work mob damage$/i, "Normal mob DMG (stat window)"],
     // Long optimizer labels
     [/^Withheld Hyperstat Points$/, "Unused Hyper Stat pts"],
-    [/^Renown Application Status$/, "Renown applied"]
+    [/^Renown Application Status$/, "Renown applied"],
+    // Flame simulator labels
+    [/^Target Flame\(Main Stat\)$/, "Target flame (stat)"],
+    [/^The number of simulations$/, "Simulations"]
   ],
   gms: [],
   msea: [

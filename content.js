@@ -21,7 +21,7 @@
   const PARTICLES = "에서는|에서|으로|로는|에는|을|를|이|가|은|는|의|에|로|와|과|도|만|중|으론";
   function buildRegex() {
     // Our keys from 2 syllables, site keys from 3 (they're less curated).
-    const keys = Object.keys(G).filter((k) => KO.test(k) && (k.length >= 3 || (k.length >= 2 && k in OWN)));
+    const keys = Object.keys(G).filter((k) => G[k] !== null && KO.test(k) && (k.length >= 3 || (k.length >= 2 && k in OWN)));
     keys.sort((a, b) => b.length - a.length);
     // Whole words only: the term can't sit inside a longer Korean word (페이지 != 페+이지).
     // A trailing grammar particle (을/를/의/에서...) is allowed and captured.
@@ -87,7 +87,7 @@
     if (!t) return null;
     if (!KO.test(t)) { if (!EN_RE || !EN_RE.test(t)) return null; const l = localize(t); return l === t ? null : lead + l + trail; }
 
-    if (Object.prototype.hasOwnProperty.call(G, t)) return lead + localize(G[t]) + trail;
+    if (Object.prototype.hasOwnProperty.call(G, t)) return G[t] === null ? null : lead + localize(G[t]) + trail;
     if (looksLikeName(t) && !UI.has(t)) return null; // leave character / guild names alone
 
     // Mask "world@name" credits so the name part isn't touched.
@@ -100,7 +100,7 @@
 
     s = s.replace(/\u0000(\d+)\u0000/g, (_, i) => masks[+i]);
     // Second look-up: some sentences only match once their game terms are in English.
-    if (!forMT && Object.prototype.hasOwnProperty.call(G, s)) s = G[s];
+    if (!forMT && Object.prototype.hasOwnProperty.call(G, s) && G[s] !== null) s = G[s];
     s = localize(s).replace(/ {2,}/g, " ").replace(/\( /g, "(");
     return s === t ? null : lead + s + trail;
   }
